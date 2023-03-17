@@ -14,4 +14,4 @@
 - [x] The planet list API must return the name, created, updated, url and is_favourite fields
 - [x] The movies list API must return the title, release_date, created, updated, url and is_favourite fields
 - [ ] If the custom name is set by the user then that should be returned as the name/title and it should be used when searching
-- [ ] Additionally the list APIs must support searching by title/name
+- [x] Additionally the list APIs must support searching by title/name
