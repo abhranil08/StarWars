@@ -1,6 +1,7 @@
 import {favouritesByUser} from "../server.js";
 import axios from 'axios';
 
+// add favourites to global hashmap per user -> DB write should be done in future
 export const addFavouriteMovie = async( req, res, next ) => {
   const { user_id, title, custom_name } = req.body;
 
@@ -38,6 +39,7 @@ export const addFavouriteMovie = async( req, res, next ) => {
   res.status(201).json({ message: "Favourite added successfully" });
 };
 
+// add favourites to global hashmap per user -> DB write should be done in future
 export const addFavouritePlanet = async( req, res, next ) => {
   const { user_id, name, custom_name } = req.body;
 

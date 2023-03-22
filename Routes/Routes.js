@@ -1,16 +1,17 @@
 import express from 'express';
-import { getMovies, getMoviesByUser, searchAllMoviesForUser } from '../Controller/movieContoller.js';
-import { getPlanets, getPlanetsByUser, searchAllPlanetsForUser } from '../Controller/planetController.js';
+import { getMovies, getAllMoviesForUser } from '../Controller/movieContoller.js';
+import { getPlanets, getAllPlanetsForUser } from '../Controller/planetController.js';
 
 const router = express.Router();
+
+// Get/Search all movies
 router.get('/movies', getMovies );
 router.get('/planets', getPlanets );
 
-// search by favourite movies/planets by users
-router.get('/movies/getMoviesByUser', getMoviesByUser );
-router.get('/planets/getPlanetsByUser', getPlanetsByUser );
+/* Get all movies/planets by users (userId)
+ - If custom name is set then that will be returned as the title.
+*/
+router.get('/movies/getAllMoviesForUser', getAllMoviesForUser );
+router.get('/planets/getAllPlanetsForUser', getAllPlanetsForUser );
 
-// search by all movies/planets by users
-router.get('/movies/searchAllMoviesForUser', searchAllMoviesForUser );
-router.get('/planets/searchAllPlanetsForUser', searchAllPlanetsForUser );
 export default router;
