@@ -1,6 +1,7 @@
 import request from 'request';
 import {favouritesByUser} from "../server.js";
 
+// get movies
 export const getMovies = async( req, res, next ) => {
     const title = req.query.title;
     const url = 'https://swapi.dev/api/films';
@@ -10,6 +11,7 @@ export const getMovies = async( req, res, next ) => {
       res.status(500).send('Internal Server Error');
     } else {
         let moviesData = body.results;
+        //filtering when title is provided in the search parameter
         if (title) {
         moviesData = moviesData.filter(movie => movie.title.toLowerCase().includes(title.toLowerCase()));
         }
@@ -27,43 +29,7 @@ export const getMovies = async( req, res, next ) => {
 });
 };
 
-export const getMoviesByUser = async( req, res, next ) => {
-    const { search, user_id } = req.query;
-    let title = req.query.title;      
-    if(search) 
-    {
-        let customNameMatch;
-        if(favouritesByUser[user_id] && favouritesByUser[user_id]["movies"])
-        {
-          let arr = favouritesByUser[user_id]["movies"];
-          customNameMatch = arr.find(o => o.custom_name === search.toLowerCase()).title;
-        }
-        if(customNameMatch)
-        title = customNameMatch;
-    };
-    
-    const url = `https://swapi.dev/api/films/?search=${title}`;
-    request(url, { json: true }, (error, response, body) => {
-    if (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
-    } else 
-    {
-      let moviesData = body.results;
-
-      const movies = moviesData.map(movie => ({
-      title: movie.title,
-      release_date: movie.release_date,
-      created: movie.created,
-      updated: movie.edited,
-      url: movie.url,
-      is_favourite: false,
-    }));
-    res.json(movies);
-  }
-});
-};
-
+// Getting custom_name from global hashmap if it exists -> DB search needed to be done in future
 function customMovieNameForUser( title, user_id ){
     let customNameMatch;
     if(favouritesByUser[user_id] && favouritesByUser[user_id]["movies"])
@@ -83,7 +49,8 @@ function customMovieNameForUser( title, user_id ){
     }
 };
 
-export const searchAllMoviesForUser = async( req, res, next ) => {
+// get movies for users
+export const getAllMoviesForUser = async( req, res, next ) => {
     const { user_id } = req.query;
     const url = 'https://swapi.dev/api/films';
     request(url, { json: true }, (error, response, body) => {
