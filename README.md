@@ -21,7 +21,8 @@
   ```
 - Now the project is ready to use
 - You can check it using `npm start`, it will open the website locally on your browser.
-- Change PORT number in server.js to use your own. Ex : local URL - http://localhost:3000/ , when PORT number : 3000
+- PORT number in server.js to use your own. Ex : local URL - http://localhost:3000/ , when PORT number : 3000
+- **Just for this assignment no DB used, instead a global hashmap is being for processing favourites. Can update to use DB if asked or needed.**
 
 # Things DONE :
 - [x] MUST load planets and movies from the JSON API provided by https://sw-api-rwjfuiltyq-el.a.run.app/
