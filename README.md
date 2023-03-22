@@ -44,48 +44,47 @@
    ```
    
 2. Get/Search planets, without any user details :
- ```
+  ```
    - GET /planets
    - GET /planets?name=<planet_name>
    ```
    
 3. Get all movies by userID ( If custom name is set then that will be returned as the title ) :
-```
+  ```
    - GET api/movies/getAllMoviesForUser?user_id=<user_id>
    ```
    
 4. Search all planets by userID ( If custom name is set then that will be returned as the name ):
-```
+  ```
    - GET /api/planets/getAllPlanetsForUser?user_id=<user_id>
    ```
 
 5. Add favourite movie by users( userID ):
-```
+  ```
    - POST /api/favourites/movies
       - Request : {
                   "user_id":<user_id>,
                   "title":"<title>",
                   "custom_name":"<custom_name>"
                   }
- ```
+  ```
    
 5. Add favourite planet by users( userID ):
-```
+  ```
    - POST api/favourites/planets
       - Request : {
                   "user_id":<user_id>,
                   "name":"<planet_name>",
                   "custom_name":"<custom_name>"
                   }
-```
+  ```
    
 7. Search movies by users( If custom name is set then that will be returned as the title ):
-```
+  ```
    - GET /api/search/movies/byUser?search=<search_term>&user_id=<user_id>
-```
+  ```
    
 8. Search planets by users( If custom name is set then that will be returned as the name ):
-```
+  ```
    - GET /api/search/planets/byUser?search=<search_term>&user_id=<user_id>
-```
-
+  ```
