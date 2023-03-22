@@ -63,7 +63,7 @@
 ```
    - POST /api/favourites/movies
       - Request : {
-                  "user_id":"<user_id>",
+                  "user_id":<user_id>,
                   "title":"<title>",
                   "custom_name":"<custom_name>"
                   }
@@ -73,7 +73,7 @@
 ```
    - POST api/favourites/planets
       - Request : {
-                  "user_id":"<user_id>",
+                  "user_id":<user_id>,
                   "name":"<planet_name>",
                   "custom_name":"<custom_name>"
                   }
