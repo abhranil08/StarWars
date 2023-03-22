@@ -4,8 +4,8 @@ import axios from 'axios';
 // add favourites to global hashmap per user -> DB write should be done in future
 export const addFavouriteMovie = async( req, res, next ) => {
   const { user_id, title, custom_name } = req.body;
-
-  if (!user_id ) {
+  
+  if (!user_id || !title || !custom_name) {
     return res.status(400).json({ message: "Missing required parameters" });
   }
 
@@ -43,7 +43,7 @@ export const addFavouriteMovie = async( req, res, next ) => {
 export const addFavouritePlanet = async( req, res, next ) => {
   const { user_id, name, custom_name } = req.body;
 
-  if (!user_id ) {
+  if (!user_id || !name || !custom_name) {
     return res.status(400).json({ message: "Missing required parameters" });
   }
 

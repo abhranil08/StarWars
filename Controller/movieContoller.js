@@ -49,6 +49,20 @@ function customMovieNameForUser( title, user_id ){
     }
 };
 
+// Getting isFavourites from global hashmap if it exists -> DB search needed to be done in future
+function isFavouriteMoviesForUser( title, user_id ){
+    let customNameMatch;
+    if(favouritesByUser[user_id] && favouritesByUser[user_id]["movies"])
+    {
+        let arr = favouritesByUser[user_id]["movies"]; 
+        customNameMatch = arr.find(o => o.title.toLowerCase() === title.toLowerCase())
+        if(customNameMatch)
+          return true;
+        else
+          return false;
+    }
+};
+
 // get movies for users
 export const getAllMoviesForUser = async( req, res, next ) => {
     const { user_id } = req.query;
@@ -66,7 +80,7 @@ export const getAllMoviesForUser = async( req, res, next ) => {
         created: movie.created,
         updated: movie.edited,
         url: movie.url,
-        is_favourite: false,
+        is_favourite: isFavouriteMoviesForUser(movie.title, user_id),
       }));
       res.json(movies);
     }

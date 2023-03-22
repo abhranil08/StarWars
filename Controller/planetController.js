@@ -47,6 +47,20 @@ function customPlanetNameForUser( name, user_id ){
     }
 };
 
+// Getting isFavourites from global hashmap if it exists -> DB search needed to be done in future
+function isFavouritePlanetsForUser( name, user_id ){
+    let customNameMatch;
+    if(favouritesByUser[user_id] && favouritesByUser[user_id]["planets"])
+    {
+        let arr = favouritesByUser[user_id]["planets"]; 
+        customNameMatch = arr.find(o => o.name.toLowerCase() === name.toLowerCase())
+        if(customNameMatch)
+          return true;
+        else
+          return false;
+    }
+};
+
 /* get planets for users*/
 export const getAllPlanetsForUser = async( req, res, next ) => {
     const { user_id } = req.query;
@@ -63,7 +77,7 @@ export const getAllPlanetsForUser = async( req, res, next ) => {
         created: planet.created,
         updated: planet.edited,
         url: planet.url,
-        is_favourite: false,
+        is_favourite: isFavouritePlanetsForUser(planet.name,user_id),
       }));
       res.json(planets);
     }
